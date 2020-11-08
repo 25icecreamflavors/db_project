@@ -62,8 +62,8 @@ CREATE TABLE comments (
     edition BOOLEAN,
     id_client INT,
     id_post INT,
-    PRIMARY KEY (id_client) REFERENCES (client),
-    PRIMARY KEY (id_post) REFERENCES (announcment)
+    FOREIGN KEY (id_client) REFERENCES (client),
+    FOREIGN KEY (id_post) REFERENCES (announcment)
 );
 
 CREATE TABLE booking_date (
@@ -75,7 +75,7 @@ CREATE TABLE booking_date (
     id_owner INT,
     id_client INT,
     id_post INT,
-    PRIMARY KEY (id_owner) REFERENCES (landlord),
-    PRIMARY KEY (id_client) REFERENCES (client),
-    PRIMARY KEY (id_post) REFERENCES (announcement)
+    FOREIGN KEY (id_owner) REFERENCES (landlord),
+    FOREIGN KEY (id_client) REFERENCES (client),
+    FOREIGN KEY (id_post) REFERENCES (announcement)
 );
