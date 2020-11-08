@@ -1,16 +1,16 @@
 CREATE DATABASE PHARMNETWORK;
 
-CREATE TABLE landlord(
+CREATE TABLE landlord (
     id_owner INT PRIMARY KEY,
     name VARCHAR(50),
     announcement_number INT,
     date_registration DATE
 );
 
-CREATE TABLE suburb(
+CREATE TABLE suburb (
     id_suburb INT PRIMARY KEY,
     name VARCHAR(20),
-    availability_of_metro BOOLEAN,
+    availability_of_metro BIT,
     number_of_hospitals INT,
     number_of_conv_stores INT
 );
@@ -30,9 +30,9 @@ CREATE TABLE client (
     name VARCHAR(50)
 );
 
-CREATE TABLE announcement(
-    id_post INT,
-    text_description VARCHAR(10000),
+CREATE TABLE announcement (
+    id_post INT PRIMARY KEY,
+    text_description VARCHAR(8000),
     average_rating FLOAT,
     number_of_review INT,
     min_nights INT,
@@ -43,14 +43,13 @@ CREATE TABLE announcement(
     square FLOAT,
     latitude FLOAT,
     longitude FLOAT,
-    revelance BOOLEAN,
+    revelance Bit,
     id_owner INT,
     id_suburb INT,
     id_city INT,
-    PRIMARY KEY (id_post),
-    FOREIGN KEY (id_owner) REFERENCES(landlord),
-    FOREIGN KEY (id_suburb) REFERENCES (suburb),
-    FOREIGN KEY (id_city) REFERENCES (city)
+    FOREIGN KEY (id_owner) REFERENCES landlord(id_owner),
+    FOREIGN KEY (id_suburb) REFERENCES suburb(id_suburb),
+    FOREIGN KEY (id_city) REFERENCES city(id_city)
 );
 
 CREATE TABLE comments (
@@ -59,23 +58,23 @@ CREATE TABLE comments (
     number_of_likes INT,
     number_of_dislikes INT,
     grade_of_client INT,
-    edition BOOLEAN,
+    edition BIT,
     id_client INT,
     id_post INT,
-    FOREIGN KEY (id_client) REFERENCES (client),
-    FOREIGN KEY (id_post) REFERENCES (announcment)
+    FOREIGN KEY (id_client) REFERENCES client(id_client),
+    FOREIGN KEY (id_post) REFERENCES announcement(id_post)
 );
 
 CREATE TABLE booking_date (
     id_booking INT PRIMARY KEY,
     start_booking DATETIME,
     end_booking DATETIME,
-    confirmation BOOLEAN,
-    canceling BOOLEAN,
+    confirmation BIT,
+    canceling BIT,
     id_owner INT,
     id_client INT,
     id_post INT,
-    FOREIGN KEY (id_owner) REFERENCES (landlord),
-    FOREIGN KEY (id_client) REFERENCES (client),
-    FOREIGN KEY (id_post) REFERENCES (announcement)
+    FOREIGN KEY (id_owner) REFERENCES landlord(id_owner),
+    FOREIGN KEY (id_client) REFERENCES client(id_client),
+    FOREIGN KEY (id_post) REFERENCES announcement(id_post)
 );
