@@ -43,7 +43,7 @@ CREATE TABLE announcement (
     square FLOAT,
     latitude FLOAT,
     longitude FLOAT,
-    revelance Bit,
+    revelance BIT,
     id_owner INT,
     id_suburb INT,
     id_city INT,
