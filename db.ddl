@@ -126,3 +126,17 @@ CREATE PROCEDURE Houses.get_posts_bycity
     SELECT Houses.announcement.id_post, Houses.city.name 
     FROM Houses.announcement LEFT JOIN Houses.city ON Houses.announcement.id_city = Houses.city.id_city
     WHERE Houses.city.name = @city;
+    
+    
+    
+// Useful trigger for increasing value after insert
+GO
+CREATE TRIGGER post_addition ON Houses.announcement
+    AFTER INSERT
+    AS
+      UPDATE Houses.landlord
+      SET Houses.landlord.announcement_number = Houses.landlord.announcement_number + 1
+      FROM inserted
+      LEFT JOIN Houses.landlord
+      ON inserted.id_owner = Houses.landlord.id_owner
+      WHERE Houses.landlord.id_owner =  inserted.id_owner;
