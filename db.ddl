@@ -78,3 +78,15 @@ CREATE TABLE booking_date (
     FOREIGN KEY (id_client) REFERENCES client(id_client),
     FOREIGN KEY (id_post) REFERENCES announcement(id_post)
 );
+
+
+// СREATING PROCEDURE FOR ADDING INFO
+
+CREATE PROCEDURE Houses.AddSuburb
+    @name NVARCHAR(20),
+    @metro BIT,
+    @hospital INT,
+    @shops INT
+AS
+INSERT INTO Houses.suburb
+VALUES(@name, @metro, @hospital, @shops);
