@@ -116,3 +116,13 @@ CREATE PROCEDURE Houses.RentAveragePrices As
     SELECT AVG(cost_per_night) AS [Average price], id_city AS city
     FROM Houses.announcement
     GROUP BY id_city
+ 
+ 
+ 
+// Get posts by chosen city 
+GO
+CREATE PROCEDURE Houses.get_posts_bycity
+@city NVARCHAR(50) AS
+    SELECT Houses.announcement.id_post, Houses.city.name 
+    FROM Houses.announcement LEFT JOIN Houses.city ON Houses.announcement.id_city = Houses.city.id_city
+    WHERE Houses.city.name = @city;
