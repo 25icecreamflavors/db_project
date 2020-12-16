@@ -110,3 +110,9 @@ BEGIN
     number_of_railway_stations AS [Train stations], number_of_museums AS Museums
   FROM city
 END;
+
+GO
+CREATE PROCEDURE Houses.RentAveragePrices As
+    SELECT AVG(cost_per_night) AS [Average price], id_city AS city
+    FROM Houses.announcement
+    GROUP BY id_city
