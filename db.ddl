@@ -1,4 +1,4 @@
-CREATE DATABASE HOUSES_DATABASE;
+CREATE DATABASE HOUSES;
 
 CREATE TABLE landlord (
     id_owner INT PRIMARY KEY,
@@ -121,22 +121,22 @@ CREATE PROCEDURE Houses.RentAveragePrices As
  
 // Get posts by chosen city 
 GO
-CREATE PROCEDURE Houses.get_posts_bycity
+CREATE PROCEDURE get_posts_bycity
 @city NVARCHAR(50) AS
-    SELECT Houses.announcement.id_post, Houses.city.name 
-    FROM Houses.announcement LEFT JOIN Houses.city ON Houses.announcement.id_city = Houses.city.id_city
-    WHERE Houses.city.name = @city;
+    SELECT announcement.id_post, city.name 
+    FROM announcement LEFT JOIN city ON announcement.id_city = city.id_city
+    WHERE city.name = @city;
     
     
     
 // Useful trigger for increasing value after insert
 GO
-CREATE TRIGGER post_addition ON Houses.announcement
+CREATE TRIGGER post_addition ON announcement
     AFTER INSERT
     AS
-      UPDATE Houses.landlord
-      SET Houses.landlord.announcement_number = Houses.landlord.announcement_number + 1
+      UPDATE landlord
+      SET landlord.announcement_number = landlord.announcement_number + 1
       FROM inserted
-      LEFT JOIN Houses.landlord
-      ON inserted.id_owner = Houses.landlord.id_owner
-      WHERE Houses.landlord.id_owner =  inserted.id_owner;
+      LEFT JOIN landlord
+      ON inserted.id_owner = landlord.id_owner
+      WHERE landlord.id_owner =  inserted.id_owner;
