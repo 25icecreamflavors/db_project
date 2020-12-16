@@ -82,17 +82,17 @@ CREATE TABLE booking_date (
 
 // СREATING PROCEDURE FOR ADDING INFO
 GO
-CREATE PROCEDURE Houses.AddSuburb
+CREATE PROCEDURE AddSuburb
     @name NVARCHAR(20),
     @metro BIT,
     @hospital INT,
     @shops INT
 AS
-INSERT INTO Houses.suburb
+INSERT INTO suburb
 VALUES(@name, @metro, @hospital, @shops);
 
 GO
-CREATE PROCEDURE Houses.AddCity
+CREATE PROCEDURE AddCity
     @name VARCHAR(30),
     @currency  VARCHAR(50),
     @airports INT,
@@ -100,7 +100,7 @@ CREATE PROCEDURE Houses.AddCity
     @train INT,
     @salary INT
 AS
-INSERT INTO Houses.city
+INSERT INTO city
 VALUES(@name, @currency, @airports, @museums, @train, @salary);
 
 GO
