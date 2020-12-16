@@ -8,7 +8,7 @@ CREATE TABLE landlord (
 );
 
 CREATE TABLE suburb (
-    id_suburb INT PRIMARY KEY,
+    id_suburb AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(20),
     availability_of_metro BIT,
     number_of_hospitals INT,
@@ -16,7 +16,7 @@ CREATE TABLE suburb (
 );
 
 CREATE TABLE city (
-    id_city INT PRIMARY KEY,
+    id_city AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30),
     currency VARCHAR(50),
     number_of_airports INT,
@@ -31,7 +31,7 @@ CREATE TABLE client (
 );
 
 CREATE TABLE announcement (
-    id_post INT PRIMARY KEY,
+    id_post AUTO_INCREMENT PRIMARY KEY,
     text_description VARCHAR(8000),
     average_rating FLOAT,
     number_of_review INT,
@@ -53,7 +53,7 @@ CREATE TABLE announcement (
 );
 
 CREATE TABLE comments (
-    id_comment INT PRIMARY KEY,
+    id_comment AUTO_INCREMENT PRIMARY KEY,
     text VARCHAR(1000),
     number_of_likes INT,
     number_of_dislikes INT,
@@ -66,7 +66,7 @@ CREATE TABLE comments (
 );
 
 CREATE TABLE booking_date (
-    id_booking INT PRIMARY KEY,
+    id_booking AUTO_INCREMENT PRIMARY KEY,
     start_booking DATETIME,
     end_booking DATETIME,
     confirmation BIT,
